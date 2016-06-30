@@ -1,17 +1,12 @@
 package com.jdjr.datasolution.dao;
 
 import com.jdjr.datasolution.domain.DPShopDO;
-import com.jdjr.datasolution.util.JdbcUtil;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -46,7 +41,7 @@ public interface DpDAO {
 
      //插入经度和纬度
     @Update("UPDATE jdjr_data.dp_food_shops SET longitude = #{longitude}, latitude = #{latitude} WHERE id = #{id}")
-    public void insertLngAndLat(@Param(value = "id") int id,
-                                @Param(value = "longitude") String longitude,
-                                @Param(value = "latitude") String latitude);
+    public void insertLngAndLat(@Param(value = "longitude") String longitude,
+                                @Param(value = "latitude") String latitude,
+                                @Param(value = "id") int id);
 }

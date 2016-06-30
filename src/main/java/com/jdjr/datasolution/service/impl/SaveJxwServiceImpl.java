@@ -20,7 +20,8 @@ public class SaveJxwServiceImpl implements ISaveJxwService {
      */
     @Override
     public int insertData(JXWGoodsDO jxwGoodsDO) {
-       return jxwDAO.saveData(jxwGoodsDO);
+
+        return jxwDAO.saveData(jxwGoodsDO);
     }
 
 }

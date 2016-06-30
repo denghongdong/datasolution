@@ -65,6 +65,6 @@ public class SaveDpServiceImpl implements ISaveDpService {
 
     @Override
     public void addLngAndLat(String longitude, String latitude, int id) {
-        dpDAO.insertLngAndLat(id,longitude,latitude);
+        dpDAO.insertLngAndLat(longitude,latitude,id);
     }
 }

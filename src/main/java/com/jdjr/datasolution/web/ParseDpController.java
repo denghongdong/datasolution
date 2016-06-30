@@ -2,64 +2,45 @@ package com.jdjr.datasolution.web;
 
 import com.jdjr.datasolution.domain.DPShopDO;
 import com.jdjr.datasolution.service.ISaveDpService;
-import com.jdjr.datasolution.service.impl.SaveDpServiceImpl;
 import com.jdjr.datasolution.util.DateUtil;
 import com.jdjr.datasolution.util.ParseDpUtil;
 import com.jdjr.datasolution.util.SettingsUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.util.Date;
 
 /**
  * Created by xiaodengliang on 2016/5/18.
  */
+@Controller
+@RequestMapping("/dp")
 public class ParseDpController {
     /**
      * 数据入库主函数
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(ParseDpController.class.getName());
-    public static DPShopDO dpShopDO = new DPShopDO();
-    public static ISaveDpService saveDpService = new SaveDpServiceImpl();
-    public static SettingsUtil settings = null;
 
-    /**
-     * 加载properties配置文件
-     *
-     * @param propertiyFile
-     */
-    public ParseDpController(File propertiyFile) {
-        settings = new SettingsUtil(propertiyFile);//实例化参数处理类
-        settings.setParameters();                  //加载配置文件
-    }
+    DPShopDO dpShopDO = new DPShopDO();
+    SettingsUtil settings = null;
 
-    /**
-     * 主函数
-     *
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        ParseDpController infoExtra = new ParseDpController
-                (new File("input/settings.properties"));
-        String existingName = FileUtils.readFileToString(new File("log/insertDB.log"), "UTF-8");
-        LOGGER.warn("开始入库--->>>>");
-        //调用解析网页函数
-        infoExtra.runMain(existingName);
+    @Resource
+    ISaveDpService saveDpService;
 
-    }
-
-    /**
-     * 遍历页面
-     *
-     * @throws Exception
-     */
-    public void runMain(String existingName) throws Exception {
+    @RequestMapping("/insertDB")
+    public void runMain() throws Exception {
         String dir_name = null;                            //子文件夹名
         File file = new File(settings.getFileSavePath());  //读取父文件夹
         File dir_file[] = null;                            //存放子文件夹下面的html文件
+        settings = new SettingsUtil(new File("input/settings.properties"));//实例化参数处理类
+        settings.setParameters();                  //加载配置文件
+        String existingName = FileUtils.readFileToString(new File("log/insertDB.log"), "UTF-8");
+        LOGGER.warn("开始入库--->>>>");
         File files[] = file.listFiles();                   //读取父目录下面的所有子目录文件夹
         int lens = files.length;                           //父文件夹下面的文件（夹）长度
         for (int i = 0; i < lens; i++) {
@@ -160,7 +141,7 @@ public class ParseDpController {
             } else if (infoTxt.startsWith("人均") || infoTxt.startsWith("消费")) {
                 dpShopDO.setPer_consumption(infoTxt.substring(infoTxt.lastIndexOf("：") + 1));
 
-            } else if (infoTxt.startsWith("口味")) {
+            } else if (infoTxt.startsWith("口味")|| infoTxt.startsWith("产品")) {
                 dpShopDO.setTaste(infoTxt.substring(infoTxt.lastIndexOf("：") + 1));
 
             } else if (infoTxt.startsWith("环境")) {

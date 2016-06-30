@@ -26,14 +26,12 @@ public class ParseJxwController {
      * 数据入库主函数
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(ParseJxwController.class.getName());
-    @Resource
-    JXWGoodsDO jxwGoodsDO;
 
+    JXWGoodsDO jxwGoodsDO = new JXWGoodsDO();
+    SettingsUtil settings = null;
     @Resource
     ISaveJxwService saveJxwService;
 
-    @Resource
-    SettingsUtil settings;
 
     @RequestMapping("/insertDB")
     public void runMain() throws Exception {

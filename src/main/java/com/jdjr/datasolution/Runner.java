@@ -1,4 +1,5 @@
-package com.jdjr.datasolution; /**
+package com.jdjr.datasolution;
+/**
  * Created by xiaodl on 15/12/27.
  */
 

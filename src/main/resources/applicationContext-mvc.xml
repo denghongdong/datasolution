@@ -54,6 +54,8 @@
         <property name="exposeSpringMacroHelpers" value="true"/>
         <property name="requestContextAttribute" value="request"/>
     </bean>
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/static/"/>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 

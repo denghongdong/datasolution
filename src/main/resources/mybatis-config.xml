@@ -29,6 +29,6 @@
     </typeAliases>
 
     <typeHandlers>
-        <typeHandler handler="com.qjyd.xrxs.common.JsonTypeHandler" javaType="java.util.Map"/>
+        <typeHandler handler="com.jdjr.datasolution.common.JsonTypeHandler" javaType="java.util.Map"/>
     </typeHandlers>
 </configuration>
