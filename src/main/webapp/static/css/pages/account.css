@@ -1,0 +1,52 @@
+/*客户相关 css文件*/
+
+/*tab切换 样式*/
+.account-tab ul{
+    border-bottom: 1px solid #efeff1;
+    line-height: 50px;
+    font-size:15px;
+}
+.account-tab li{
+    display: inline-block;
+}
+.account-tab li a{
+    color: #959494;
+    display: block;
+    padding:0px 15px;
+    margin-bottom: -1px;
+}
+.account-tab li a.active{
+    border-bottom: #38a99d solid 2px;
+    color: #000;
+}
+
+/*信息展示 列表*/
+.account-form-list{
+    line-height: 40px;
+}
+
+.account-form-list li{
+    width:50%;
+    line-height:40px;
+    float: left;
+    position: relative;
+    border-bottom: 1px solid #efeff1;
+}
+
+.account-form-list li label{
+    display: inline-block;
+    width:170px;
+    padding-right: 10px;
+    text-align: right;
+    background: #faf9f9;
+    color: #959494;
+}
+
+.account-search{
+    position: relative;
+}
+
+/**/
+.serach-form{
+    width:640px;
+}

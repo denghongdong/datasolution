@@ -1,0 +1,98 @@
+/**
+ * 首页相关css
+ **/
+.manage-box,.company-info{
+    padding: 20px 10px;
+}
+
+/*登录页*/
+.site-login{
+    width: 400px;
+    padding:30px 20px 20px;
+    margin: 0px auto;
+}
+.login-btn{
+    width: 100%;
+}
+
+/* 搜索条件选择 */
+.feedback-search,.account-search,.log-search{
+    background: #f5f5f5;
+    box-shadow:0px 0px 3px #666;
+    border-radius: 5px;
+    padding: 20px 20px 0px;
+    margin-bottom: 30px;
+}
+.account-search{
+    padding-bottom: 10px;
+}
+.search-btns{
+    margin-top: 25px;
+}
+.search-btns .btn{
+    margin-left: 20px;
+}
+
+/* 表格样式 */
+.table{
+    border:1px solid #ddd;
+    text-align: center;
+}
+.table thead{
+    background: #eaeaea;
+}
+.table thead tr th{
+    border-bottom: 0px;
+    text-align: center;
+}
+
+.upload-licence-account{
+    border:1px solid #CCC;
+    background: #fff;
+    border-radius: 5px;
+    margin-left: 30px;
+    margin-top: -15px;
+    position: relative;
+    display: none;
+    overflow: hidden;
+}
+.upload-licence-account h5{
+    font-weight: bold;
+    float:left;
+}
+.upload-licence-account .right-links{
+    float: right;
+    margin: 0px 0px 0 15px;
+    text-decoration: none;
+}
+.upload-licence-account a{
+    padding-top:6px;
+    display: block;
+}
+.upload-licence-account ul{
+    list-style: none;
+    margin-left: -40px;
+    text-align:left;
+    float: left;
+}
+.licence-account i,.modal-licence-account i{
+    font-style: normal;
+}
+
+.modal-licence-account ,.modal-licence-account li{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+.modal-licence-account li{
+    padding: 0px 10px;
+    line-height: 34px;
+}
+.modal-licence-account li a{
+    display: block;
+    color: #666666;
+    background-color: #ffffff;
+}
+.modal-licence-account li:nth-child(2n) a{
+    background-color:#f1f1f1;
+}

@@ -1,0 +1,21 @@
+CREATE TABLE `jxw_goods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `brand_name` varchar(11) NOT NULL DEFAULT '' COMMENT '商品品牌',
+  `goods_id` varchar(11) NOT NULL DEFAULT '' COMMENT '商品编号',
+  `goods_name` varchar(32) NOT NULL DEFAULT '' COMMENT '商品名',
+  `total_sales` varchar(11) NOT NULL DEFAULT '' COMMENT '累计销量',
+  `score` varchar(11) NOT NULL DEFAULT '' COMMENT '评分',
+  `price` varchar(11) NOT NULL DEFAULT '' COMMENT '价钱',
+  `place_of_origin` varchar(32) NOT NULL DEFAULT '' COMMENT '产地',
+  `net_quantity` varchar(11) NOT NULL DEFAULT '' COMMENT '净含量',
+  `address` varchar(32) NOT NULL DEFAULT '' COMMENT '酒厂',
+  `degree` varchar(11) NOT NULL DEFAULT '' COMMENT '酒精度',
+  `spec` varchar(11) NOT NULL DEFAULT '' COMMENT '规格',
+  `box_capacity` varchar(11) NOT NULL DEFAULT '' COMMENT '箱规',
+  `flavor` varchar(11) NOT NULL DEFAULT '' COMMENT '香型',
+  `tatal_comments` varchar(11) NOT NULL DEFAULT '' COMMENT '累计评价',
+  `goods_url` varchar(64) NOT NULL DEFAULT '' COMMENT '商品URL',
+  `file_path` varchar(64) NOT NULL DEFAULT '' COMMENT '本地路径',
+  `operate_time` varchar(32) NOT NULL DEFAULT '' COMMENT '操作时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='jxw数据';

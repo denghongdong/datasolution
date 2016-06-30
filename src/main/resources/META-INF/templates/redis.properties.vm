@@ -1,0 +1,8 @@
+redis.pool.maxActive=${redis_pool_maxActive}
+redis.pool.maxIdle=${redis_pool_maxIdle}
+redis.pool.maxWait=${redis_pool_maxWait}
+redis.pool.testOnBorrow=${redis_pool_testOnBorrow}
+
+redis.ip=${redis_ip}
+redis.port=${redis_port}
+redis.password=${redis_password}

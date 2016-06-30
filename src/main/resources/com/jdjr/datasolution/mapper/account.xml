@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.container.report.dao.IAccountDAO">
+
+    <sql id="updateCondition">
+
+        <if test='mobile != null and mobile != ""'>
+            ,mobile=#{mobile}
+        </if>
+        <if test='login != null and login != ""'>
+            ,login=#{login}
+        </if>
+        <if test='name != null and name != ""'>
+            ,name=#{name}
+        </if>
+        <if test='password != null and password != ""'>
+            ,password=#{password}
+        </if>
+    </sql>
+    <update id="updateAdminInfo">
+        update management.account set modtime = unix_timestamp()
+        <include refid="updateCondition"/>
+        where
+        email=#{email}
+    </update>
+</mapper>

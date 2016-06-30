@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decorators defaultdir="/WEB-INF/views/decorators">
+    <!-- 此处用来定义不需要过滤的页面 -->
+    <excludes>
+    </excludes>
+
+    <!-- 用来定义装饰器要过滤的页面 -->
+    <decorator name="common" page="common.ftl">
+        <pattern>/</pattern>
+    </decorator>
+</decorators>

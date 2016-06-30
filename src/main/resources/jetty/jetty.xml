@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.eclipse.org/configure.dtd">
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+    <Set name="ThreadPool">
+        <New class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+            <Arg>
+                <New class="java.util.concurrent.ArrayBlockingQueue">
+                    <Arg type="int">4000</Arg>
+                </New>
+            </Arg>
+            <Set name="minThreads">20</Set>
+            <Set name="maxThreads">200</Set>
+        </New>
+    </Set>
+
+    <Call name="addConnector">
+        <Arg>
+            <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                <Set name="host"><SystemProperty name="jetty.host"/></Set>
+                <Set name="port"><SystemProperty name="jetty.port" default="8080"/></Set>
+                <Set name="maxIdleTime">30000</Set>
+                <Set name="Acceptors">4</Set>
+                <Set name="statsOn">false</Set>
+                <!-- Set name="confidentialPort">8063</Set -->
+                <Set name="lowResourcesConnections">5000</Set>
+                <Set name="lowResourcesMaxIdleTime">2000</Set>
+            </New>
+        </Arg>
+    </Call>
+
+    <Array id="plusConfig" type="java.lang.String">
+        <Item>org.eclipse.jetty.webapp.WebXmlConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.FragmentConfiguration</Item>
+        <Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>
+        <Item>org.eclipse.jetty.plus.webapp.PlusConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.TagLibConfiguration</Item>
+    </Array>
+
+    <Set name="handler">
+        <New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+            <Set name="handlers">
+                <Array type="org.eclipse.jetty.server.Handler">
+                    <Item>
+                        <New class="org.eclipse.jetty.webapp.WebAppContext">
+                            <Set name="tempDirectory"><SystemProperty name="java.io.tmpdir" default="/tmp"/></Set>
+                            <Set name="resourceBase"><SystemProperty name="jetty.webroot"/></Set>
+                            <Set name="contextPath"><SystemProperty name="jetty.context" default="/"/></Set>
+                            <Set name="parentLoaderPriority">true</Set>
+                            <!-- <Set name="defaultsDescriptor"><SystemProperty name="jetty.home"/>/etc/webdefault.xml</Set> -->
+                            <Set name="configurationClasses"><Ref id="plusConfig"/></Set>
+                        </New>
+                    </Item>
+                </Array>
+            </Set>
+        </New>
+    </Set>
+
+    <Set name="stopAtShutdown">true</Set>
+    <Set name="sendServerVersion">true</Set>
+    <Set name="sendDateHeader">true</Set>
+    <Set name="gracefulShutdown">1000</Set>
+    <Set name="dumpAfterStart">false</Set>
+    <Set name="dumpBeforeStop">false</Set>
+
+</Configure>

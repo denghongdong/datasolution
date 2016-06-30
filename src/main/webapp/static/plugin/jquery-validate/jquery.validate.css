@@ -1,0 +1,21 @@
+
+input.error {
+    border: 1px solid #e22;
+}
+
+textarea.error {
+    border: 1px solid #e22;
+}
+
+input.valid {
+    border: 1px solid #394;
+}
+
+label.error {
+    color: #e22;
+    display: inline;
+}
+
+label.checked {
+    color: #394;
+}

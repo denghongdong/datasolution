@@ -1,0 +1,4 @@
+mail.send.url=${mail_send_url}
+mail.callback.url=${mail_callback_url}
+mail.unsubscribe.url=${mail_unsubscribe_url}
+

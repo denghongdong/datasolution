@@ -1,0 +1,18 @@
+#============================================================================
+# Mysql config
+#============================================================================
+db.driver=${jdbc_driver}
+
+db.online.master.url=${master_url}
+db.online.master.username=${master_username}
+db.online.master.password=${master_password}
+
+db.online.slave.url=${slave_url}
+db.online.slave.username=${slave_username}
+db.online.slave.password=${slave_password}
+
+pool.initialPoolSize=10
+pool.minPoolSize=3
+pool.maxPoolSize=50
+pool.maxIdleTime=120
+pool.acquireIncrement=1
