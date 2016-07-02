@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IFAccountDAO">
+
+    <resultMap id="FAccountResult" type="com.qjyd.xrxs.domain.FAccountDO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="status" property="status"/>
+        <result column="sourceType" property="sourceType"/>
+        <result column="addtime" property="addtime"/>
+        <result column="companyName" property="companyName"/>
+        <result column="companyStatus" property="companyStatus"/>
+    </resultMap>
+
+    <sql id="condition">
+        <if test='keyword != null and keyword != ""'>
+            AND (a.name LIKE CONCAT('%',#{keyword},'%') OR a.email LIKE CONCAT('%',#{keyword},'%') OR a.mobile LIKE CONCAT('%',#{keyword},'%') OR c.name LIKE CONCAT('%',#{keyword},'%'))
+        </if>
+        <if test='startTime != null and startTime != ""'>
+            AND a.addtime &gt; #{startTimeInSeconds}
+        </if>
+        <if test='endTime != null and endTime != ""'>
+            AND a.addtime &lt; #{endTimeInSeconds}
+        </if>
+        <if test='type != null and type != ""'>
+            AND a.type = #{type}
+        </if>
+        <if test='status != null and status != ""'>
+            AND a.status = #{status}
+        </if>
+        <if test='companyStatus != null and companyStatus != ""'>
+            AND c.status = #{companyStatus}
+        </if>
+        <if test='sourceType != null and sourceType != ""'>
+            AND a.source_type = #{sourceType}
+        </if>
+        <if test='followUpStatus != null and followUpStatus != ""'>
+            AND f.follow_up_status = #{followUpStatus}
+        </if>
+        <if test='logo_open != null and logo_open != ""'>
+            AND c.logo_open = #{logo_open}
+        </if>
+    </sql>
+
+    <select id="selectCountByCondition" resultType="java.lang.Integer">
+        SELECT count(a.id)
+        FROM business.account a LEFT JOIN company.company c ON a.company_id = c.id
+        LEFT JOIN (SELECT a1.account_id, a1.follow_up_status FROM management.account_follow_up a1 JOIN (SELECT account_id, MAX(id) mid FROM management.account_follow_up GROUP BY account_id) a2 ON a1.id=a2.mid) f ON a.id = f.account_id
+        WHERE 1 = 1
+        <include refid="condition"/>
+    </select>
+
+    <select id="selectByCondition" resultMap="FAccountResult">
+        SELECT a.id, a.name, a.email, a.mobile, a.status, a.source_type sourceType, a.addtime, c.name companyName, c.status companyStatus, f.follow_up_status followUpStatus,c.logo_open
+        FROM business.account a LEFT JOIN company.company c ON a.company_id = c.id
+        LEFT JOIN (SELECT a1.account_id, a1.follow_up_status FROM management.account_follow_up a1 JOIN (SELECT account_id, MAX(id) mid FROM management.account_follow_up GROUP BY account_id) a2 ON a1.id=a2.mid) f ON a.id = f.account_id
+        WHERE 1 = 1
+        <include refid="condition"/>
+        ORDER BY ${sortColumn} ${sortSeq}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+</mapper>

@@ -34,11 +34,11 @@ public class ParseDpController {
 
     @RequestMapping("/insertDB")
     public void runMain() throws Exception {
+        settings = new SettingsUtil(new File("input/settings.properties"));//实例化参数处理类
+        settings.setParameters();
         String dir_name = null;                            //子文件夹名
         File file = new File(settings.getFileSavePath());  //读取父文件夹
         File dir_file[] = null;                            //存放子文件夹下面的html文件
-        settings = new SettingsUtil(new File("input/settings.properties"));//实例化参数处理类
-        settings.setParameters();                  //加载配置文件
         String existingName = FileUtils.readFileToString(new File("log/insertDB.log"), "UTF-8");
         LOGGER.warn("开始入库--->>>>");
         File files[] = file.listFiles();                   //读取父目录下面的所有子目录文件夹

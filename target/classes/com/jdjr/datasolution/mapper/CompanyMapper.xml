@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.ICompanyDAO">
+    <sql id="condition">
+        <if test='startTime != null and startTime != ""'>
+            AND c.addtime &gt; #{startTimeInSeconds}
+        </if>
+        <if test='endTime != null and endTime != ""'>
+            AND c.addtime &lt; #{endTimeInSeconds}
+        </if>
+        <if test='status != null and status != ""'>
+            AND c.status = #{status}
+        </if>
+    </sql>
+
+    <select id="selectCountByCondition" resultType="java.lang.Integer">
+        SELECT count(c.id) FROM business.company c JOIN business.account a ON c.id = a.company_id
+        WHERE 1 = 1 AND a.type = 0
+        <include refid="condition"/>
+    </select>
+</mapper>

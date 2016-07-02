@@ -352,7 +352,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.jdjr.bigdata</groupId>
+                <groupId>com.xinrenxinshi.cos</groupId>
                 <artifactId>autoconfig-maven-plugin</artifactId>
                 <version>0.0.2</version>
                 <executions>

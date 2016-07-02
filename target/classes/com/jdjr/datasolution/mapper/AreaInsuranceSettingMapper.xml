@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IAreaInsuranceSettingDAO">
+    <insert id="insertAreaInsuranceSetting" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO area_insurance_setting(id,area_id,residence_type,pension_employee_percent,pension_company_percent,pension_employee_min,pension_employee_max,pension_company_min,pension_company_max,pension_employee_fixed,pension_company_fixed,pension_employee_percent_min,pension_employee_percent_max,pension_company_percent_min,pension_company_percent_max,medical_employee_percent,medical_company_percent,medical_employee_min,medical_employee_max,medical_company_min,medical_company_max,medical_employee_fixed,medical_company_fixed,medical_employee_percent_min,medical_employee_percent_max,medical_company_percent_min,medical_company_percent_max,serious_medical_employee_percent,serious_medical_company_percent,serious_medical_employee_min,serious_medical_employee_max,serious_medical_company_min,serious_medical_company_max,serious_medical_employee_fixed,serious_medical_company_fixed,serious_medical_employee_percent_min,serious_medical_employee_percent_max,serious_medical_company_percent_min,serious_medical_company_percent_max,unemployed_employee_percent,unemployed_company_percent,unemployed_employee_min,unemployed_employee_max,unemployed_company_min,unemployed_company_max,unemployed_employee_fixed,unemployed_company_fixed,unemployed_employee_percent_min,unemployed_employee_percent_max,unemployed_company_percent_min,unemployed_company_percent_max,maternity_employee_percent,maternity_company_percent,maternity_employee_min,maternity_employee_max,maternity_company_min,maternity_company_max,maternity_employee_fixed,maternity_company_fixed,maternity_employee_percent_min,maternity_employee_percent_max,maternity_company_percent_min,maternity_company_percent_max,injury_employee_percent,injury_company_percent,injury_employee_min,injury_employee_max,injury_company_min,injury_company_max,injury_employee_fixed,injury_company_fixed,injury_employee_percent_min,injury_employee_percent_max,injury_company_percent_min,injury_company_percent_max,house_fund_employee_percent,house_fund_company_percent,house_fund_employee_min,house_fund_employee_max,house_fund_company_min,house_fund_company_max,house_fund_employee_fixed,house_fund_company_fixed,house_fund_employee_percent_min,house_fund_employee_percent_max,house_fund_company_percent_min,house_fund_company_percent_max,need_serious_medical,insurance_round_method,house_fund_round_method,hover,addtime,modtime)
+        VALUES(#{id},#{areaId},#{residenceType},#{pensionEmployeePercent},#{pensionCompanyPercent},#{pensionEmployeeMin},#{pensionEmployeeMax},#{pensionCompanyMin},#{pensionCompanyMax},#{pensionEmployeeFixed},#{pensionCompanyFixed},#{pensionEmployeePercentMin},#{pensionEmployeePercentMax},#{pensionCompanyPercentMin},#{pensionCompanyPercentMax},#{medicalEmployeePercent},#{medicalCompanyPercent},#{medicalEmployeeMin},#{medicalEmployeeMax},#{medicalCompanyMin},#{medicalCompanyMax},#{medicalEmployeeFixed},#{medicalCompanyFixed},#{medicalEmployeePercentMin},#{medicalEmployeePercentMax},#{medicalCompanyPercentMin},#{medicalCompanyPercentMax},#{seriousMedicalEmployeePercent},#{seriousMedicalCompanyPercent},#{seriousMedicalEmployeeMin},#{seriousMedicalEmployeeMax},#{seriousMedicalCompanyMin},#{seriousMedicalCompanyMax},#{seriousMedicalEmployeeFixed},#{seriousMedicalCompanyFixed},#{seriousMedicalEmployeePercentMin},#{seriousMedicalEmployeePercentMax},#{seriousMedicalCompanyPercentMin},#{seriousMedicalCompanyPercentMax},#{unemployedEmployeePercent},#{unemployedCompanyPercent},#{unemployedEmployeeMin},#{unemployedEmployeeMax},#{unemployedCompanyMin},#{unemployedCompanyMax},#{unemployedEmployeeFixed},#{unemployedCompanyFixed},#{unemployedEmployeePercentMin},#{unemployedEmployeePercentMax},#{unemployedCompanyPercentMin},#{unemployedCompanyPercentMax},#{maternityEmployeePercent},#{maternityCompanyPercent},#{maternityEmployeeMin},#{maternityEmployeeMax},#{maternityCompanyMin},#{maternityCompanyMax},#{maternityEmployeeFixed},#{maternityCompanyFixed},#{maternityEmployeePercentMin},#{maternityEmployeePercentMax},#{maternityCompanyPercentMin},#{maternityCompanyPercentMax},#{injuryEmployeePercent},#{injuryCompanyPercent},#{injuryEmployeeMin},#{injuryEmployeeMax},#{injuryCompanyMin},#{injuryCompanyMax},#{injuryEmployeeFixed},#{injuryCompanyFixed},#{injuryEmployeePercentMin},#{injuryEmployeePercentMax},#{injuryCompanyPercentMin},#{injuryCompanyPercentMax},#{houseFundEmployeePercent},#{houseFundCompanyPercent},#{houseFundEmployeeMin},#{houseFundEmployeeMax},#{houseFundCompanyMin},#{houseFundCompanyMax},#{houseFundEmployeeFixed},#{houseFundCompanyFixed},#{houseFundEmployeePercentMin},#{houseFundEmployeePercentMax},#{houseFundCompanyPercentMin},#{houseFundCompanyPercentMax},#{needSeriousMedical},#{insuranceRoundMethod},#{houseFundRoundMethod},#{hover},unix_timestamp(),unix_timestamp())
+    </insert>
+    <insert id="batchInsert" parameterType="list">
+        INSERT INTO
+        area_insurance_setting(id,area_id,residence_type,pension_employee_percent,pension_company_percent,pension_employee_min,pension_employee_max,pension_company_min,pension_company_max,pension_employee_fixed,pension_company_fixed,pension_employee_percent_min,pension_employee_percent_max,pension_company_percent_min,pension_company_percent_max,medical_employee_percent,medical_company_percent,medical_employee_min,medical_employee_max,medical_company_min,medical_company_max,medical_employee_fixed,medical_company_fixed,medical_employee_percent_min,medical_employee_percent_max,medical_company_percent_min,medical_company_percent_max,serious_medical_employee_percent,serious_medical_company_percent,serious_medical_employee_min,serious_medical_employee_max,serious_medical_company_min,serious_medical_company_max,serious_medical_employee_fixed,serious_medical_company_fixed,serious_medical_employee_percent_min,serious_medical_employee_percent_max,serious_medical_company_percent_min,serious_medical_company_percent_max,unemployed_employee_percent,unemployed_company_percent,unemployed_employee_min,unemployed_employee_max,unemployed_company_min,unemployed_company_max,unemployed_employee_fixed,unemployed_company_fixed,unemployed_employee_percent_min,unemployed_employee_percent_max,unemployed_company_percent_min,unemployed_company_percent_max,maternity_employee_percent,maternity_company_percent,maternity_employee_min,maternity_employee_max,maternity_company_min,maternity_company_max,maternity_employee_fixed,maternity_company_fixed,maternity_employee_percent_min,maternity_employee_percent_max,maternity_company_percent_min,maternity_company_percent_max,injury_employee_percent,injury_company_percent,injury_employee_min,injury_employee_max,injury_company_min,injury_company_max,injury_employee_fixed,injury_company_fixed,injury_employee_percent_min,injury_employee_percent_max,injury_company_percent_min,injury_company_percent_max,house_fund_employee_percent,house_fund_company_percent,house_fund_employee_min,house_fund_employee_max,house_fund_company_min,house_fund_company_max,house_fund_employee_fixed,house_fund_company_fixed,house_fund_employee_percent_min,house_fund_employee_percent_max,house_fund_company_percent_min,house_fund_company_percent_max,need_serious_medical,insurance_round_method,house_fund_round_method,hover,addtime,modtime)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.areaId},#{item.residenceType},#{item.pensionEmployeePercent},#{item.pensionCompanyPercent},#{item.pensionEmployeeMin},#{item.pensionEmployeeMax},#{item.pensionCompanyMin},#{item.pensionCompanyMax},#{item.pensionEmployeeFixed},#{item.pensionCompanyFixed},#{item.pensionEmployeePercentMin},#{item.pensionEmployeePercentMax},#{item.pensionCompanyPercentMin},#{item.pensionCompanyPercentMax},#{item.medicalEmployeePercent},#{item.medicalCompanyPercent},#{item.medicalEmployeeMin},#{item.medicalEmployeeMax},#{item.medicalCompanyMin},#{item.medicalCompanyMax},#{item.medicalEmployeeFixed},#{item.medicalCompanyFixed},#{item.medicalEmployeePercentMin},#{item.medicalEmployeePercentMax},#{item.medicalCompanyPercentMin},#{item.medicalCompanyPercentMax},#{item.seriousMedicalEmployeePercent},#{item.seriousMedicalCompanyPercent},#{item.seriousMedicalEmployeeMin},#{item.seriousMedicalEmployeeMax},#{item.seriousMedicalCompanyMin},#{item.seriousMedicalCompanyMax},#{item.seriousMedicalEmployeeFixed},#{item.seriousMedicalCompanyFixed},#{item.seriousMedicalEmployeePercentMin},#{item.seriousMedicalEmployeePercentMax},#{item.seriousMedicalCompanyPercentMin},#{item.seriousMedicalCompanyPercentMax},#{item.unemployedEmployeePercent},#{item.unemployedCompanyPercent},#{item.unemployedEmployeeMin},#{item.unemployedEmployeeMax},#{item.unemployedCompanyMin},#{item.unemployedCompanyMax},#{item.unemployedEmployeeFixed},#{item.unemployedCompanyFixed},#{item.unemployedEmployeePercentMin},#{item.unemployedEmployeePercentMax},#{item.unemployedCompanyPercentMin},#{item.unemployedCompanyPercentMax},#{item.maternityEmployeePercent},#{item.maternityCompanyPercent},#{item.maternityEmployeeMin},#{item.maternityEmployeeMax},#{item.maternityCompanyMin},#{item.maternityCompanyMax},#{item.maternityEmployeeFixed},#{item.maternityCompanyFixed},#{item.maternityEmployeePercentMin},#{item.maternityEmployeePercentMax},#{item.maternityCompanyPercentMin},#{item.maternityCompanyPercentMax},#{item.injuryEmployeePercent},#{item.injuryCompanyPercent},#{item.injuryEmployeeMin},#{item.injuryEmployeeMax},#{item.injuryCompanyMin},#{item.injuryCompanyMax},#{item.injuryEmployeeFixed},#{item.injuryCompanyFixed},#{item.injuryEmployeePercentMin},#{item.injuryEmployeePercentMax},#{item.injuryCompanyPercentMin},#{item.injuryCompanyPercentMax},#{item.houseFundEmployeePercent},#{item.houseFundCompanyPercent},#{item.houseFundEmployeeMin},#{item.houseFundEmployeeMax},#{item.houseFundCompanyMin},#{item.houseFundCompanyMax},#{item.houseFundEmployeeFixed},#{item.houseFundCompanyFixed},#{item.houseFundEmployeePercentMin},#{item.houseFundEmployeePercentMax},#{item.houseFundCompanyPercentMin},#{item.houseFundCompanyPercentMax},#{item.needSeriousMedical},#{item.insuranceRoundMethod},#{item.houseFundRoundMethod},#{item.hover},unix_timestamp(),unix_timestamp())
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        area_id=VALUES(area_id),residence_type=VALUES(residence_type),pension_employee_percent=VALUES(pension_employee_percent),pension_company_percent=VALUES(pension_company_percent),pension_employee_min=VALUES(pension_employee_min),pension_employee_max=VALUES(pension_employee_max),pension_company_min=VALUES(pension_company_min),pension_company_max=VALUES(pension_company_max),pension_employee_fixed=VALUES(pension_employee_fixed),pension_company_fixed=VALUES(pension_company_fixed),pension_employee_percent_min=VALUES(pension_employee_percent_min),pension_employee_percent_max=VALUES(pension_employee_percent_max),pension_company_percent_min=VALUES(pension_company_percent_min),pension_company_percent_max=VALUES(pension_company_percent_max),medical_employee_percent=VALUES(medical_employee_percent),medical_company_percent=VALUES(medical_company_percent),medical_employee_min=VALUES(medical_employee_min),medical_employee_max=VALUES(medical_employee_max),medical_company_min=VALUES(medical_company_min),medical_company_max=VALUES(medical_company_max),medical_employee_fixed=VALUES(medical_employee_fixed),medical_company_fixed=VALUES(medical_company_fixed),medical_employee_percent_min=VALUES(medical_employee_percent_min),medical_employee_percent_max=VALUES(medical_employee_percent_max),medical_company_percent_min=VALUES(medical_company_percent_min),medical_company_percent_max=VALUES(medical_company_percent_max),serious_medical_employee_percent=VALUES(serious_medical_employee_percent),serious_medical_company_percent=VALUES(serious_medical_company_percent),serious_medical_employee_min=VALUES(serious_medical_employee_min),serious_medical_employee_max=VALUES(serious_medical_employee_max),serious_medical_company_min=VALUES(serious_medical_company_min),serious_medical_company_max=VALUES(serious_medical_company_max),serious_medical_employee_fixed=VALUES(serious_medical_employee_fixed),serious_medical_company_fixed=VALUES(serious_medical_company_fixed),serious_medical_employee_percent_min=VALUES(serious_medical_employee_percent_min),serious_medical_employee_percent_max=VALUES(serious_medical_employee_percent_max),serious_medical_company_percent_min=VALUES(serious_medical_company_percent_min),serious_medical_company_percent_max=VALUES(serious_medical_company_percent_max),unemployed_employee_percent=VALUES(unemployed_employee_percent),unemployed_company_percent=VALUES(unemployed_company_percent),unemployed_employee_min=VALUES(unemployed_employee_min),unemployed_employee_max=VALUES(unemployed_employee_max),unemployed_company_min=VALUES(unemployed_company_min),unemployed_company_max=VALUES(unemployed_company_max),unemployed_employee_fixed=VALUES(unemployed_employee_fixed),unemployed_company_fixed=VALUES(unemployed_company_fixed),unemployed_employee_percent_min=VALUES(unemployed_employee_percent_min),unemployed_employee_percent_max=VALUES(unemployed_employee_percent_max),unemployed_company_percent_min=VALUES(unemployed_company_percent_min),unemployed_company_percent_max=VALUES(unemployed_company_percent_max),maternity_employee_percent=VALUES(maternity_employee_percent),maternity_company_percent=VALUES(maternity_company_percent),maternity_employee_min=VALUES(maternity_employee_min),maternity_employee_max=VALUES(maternity_employee_max),maternity_company_min=VALUES(maternity_company_min),maternity_company_max=VALUES(maternity_company_max),maternity_employee_fixed=VALUES(maternity_employee_fixed),maternity_company_fixed=VALUES(maternity_company_fixed),maternity_employee_percent_min=VALUES(maternity_employee_percent_min),maternity_employee_percent_max=VALUES(maternity_employee_percent_max),maternity_company_percent_min=VALUES(maternity_company_percent_min),maternity_company_percent_max=VALUES(maternity_company_percent_max),injury_employee_percent=VALUES(injury_employee_percent),injury_company_percent=VALUES(injury_company_percent),injury_employee_min=VALUES(injury_employee_min),injury_employee_max=VALUES(injury_employee_max),injury_company_min=VALUES(injury_company_min),injury_company_max=VALUES(injury_company_max),injury_employee_fixed=VALUES(injury_employee_fixed),injury_company_fixed=VALUES(injury_company_fixed),injury_employee_percent_min=VALUES(injury_employee_percent_min),injury_employee_percent_max=VALUES(injury_employee_percent_max),injury_company_percent_min=VALUES(injury_company_percent_min),injury_company_percent_max=VALUES(injury_company_percent_max),house_fund_employee_percent=VALUES(house_fund_employee_percent),house_fund_company_percent=VALUES(house_fund_company_percent),house_fund_employee_min=VALUES(house_fund_employee_min),house_fund_employee_max=VALUES(house_fund_employee_max),house_fund_company_min=VALUES(house_fund_company_min),house_fund_company_max=VALUES(house_fund_company_max),house_fund_employee_fixed=VALUES(house_fund_employee_fixed),house_fund_company_fixed=VALUES(house_fund_company_fixed),house_fund_employee_percent_min=VALUES(house_fund_employee_percent_min),house_fund_employee_percent_max=VALUES(house_fund_employee_percent_max),house_fund_company_percent_min=VALUES(house_fund_company_percent_min),house_fund_company_percent_max=VALUES(house_fund_company_percent_max),need_serious_medical=VALUES(need_serious_medical),insurance_round_method=VALUES(insurance_round_method),house_fund_round_method=VALUES(house_fund_round_method),hover=VALUES(hover),addtime=VALUES(addtime),modtime=VALUES(modtime)
+    </insert>
+    <sql id="updatesql">
+        UPDATE area_insurance_setting
+        SET
+            <if test="pensionEmployeePercent != null">
+                pension_employee_percent=#{pensionEmployeePercent},
+            </if>
+            <if test="pensionCompanyPercent != null">
+                pension_company_percent=#{pensionCompanyPercent},
+            </if>
+            <if test="pensionEmployeeMin != null">
+                pension_employee_min=#{pensionEmployeeMin},
+            </if>
+            <if test="pensionEmployeeMax != null">
+                pension_employee_max=#{pensionEmployeeMax},
+            </if>
+            <if test="pensionCompanyMin != null">
+                pension_company_min=#{pensionCompanyMin},
+            </if>
+            <if test="pensionCompanyMax != null">
+                pension_company_max=#{pensionCompanyMax},
+            </if>
+            <if test="pensionEmployeeFixed != null">
+                pension_employee_fixed=#{pensionEmployeeFixed},
+            </if>
+            <if test="pensionCompanyFixed != null">
+                pension_company_fixed=#{pensionCompanyFixed},
+            </if>
+            <if test="pensionEmployeePercentMin != null">
+                pension_employee_percent_min=#{pensionEmployeePercentMin},
+            </if>
+            <if test="pensionEmployeePercentMax != null">
+                pension_employee_percent_max=#{pensionEmployeePercentMax},
+            </if>
+            <if test="pensionCompanyPercentMin != null">
+                pension_company_percent_min=#{pensionCompanyPercentMin},
+            </if>
+            <if test="pensionCompanyPercentMax != null">
+                pension_company_percent_max=#{pensionCompanyPercentMax},
+            </if>
+            <if test="medicalEmployeePercent != null">
+                medical_employee_percent=#{medicalEmployeePercent},
+            </if>
+            <if test="medicalCompanyPercent != null">
+                medical_company_percent=#{medicalCompanyPercent},
+            </if>
+            <if test="medicalEmployeeMin != null">
+                medical_employee_min=#{medicalEmployeeMin},
+            </if>
+            <if test="medicalEmployeeMax != null">
+                medical_employee_max=#{medicalEmployeeMax},
+            </if>
+            <if test="medicalCompanyMin != null">
+                medical_company_min=#{medicalCompanyMin},
+            </if>
+            <if test="medicalCompanyMax != null">
+                medical_company_max=#{medicalCompanyMax},
+            </if>
+            <if test="medicalEmployeeFixed != null">
+                medical_employee_fixed=#{medicalEmployeeFixed},
+            </if>
+            <if test="medicalCompanyFixed != null">
+                medical_company_fixed=#{medicalCompanyFixed},
+            </if>
+            <if test="medicalEmployeePercentMin != null">
+                medical_employee_percent_min=#{medicalEmployeePercentMin},
+            </if>
+            <if test="medicalEmployeePercentMax != null">
+                medical_employee_percent_max=#{medicalEmployeePercentMax},
+            </if>
+            <if test="medicalCompanyPercentMin != null">
+                medical_company_percent_min=#{medicalCompanyPercentMin},
+            </if>
+            <if test="medicalCompanyPercentMax != null">
+                medical_company_percent_max=#{medicalCompanyPercentMax},
+            </if>
+            <if test="seriousMedicalEmployeePercent != null">
+                serious_medical_employee_percent=#{seriousMedicalEmployeePercent},
+            </if>
+            <if test="seriousMedicalCompanyPercent != null">
+                serious_medical_company_percent=#{seriousMedicalCompanyPercent},
+            </if>
+            <if test="seriousMedicalEmployeeMin != null">
+                serious_medical_employee_min=#{seriousMedicalEmployeeMin},
+            </if>
+            <if test="seriousMedicalEmployeeMax != null">
+                serious_medical_employee_max=#{seriousMedicalEmployeeMax},
+            </if>
+            <if test="seriousMedicalCompanyMin != null">
+                serious_medical_company_min=#{seriousMedicalCompanyMin},
+            </if>
+            <if test="seriousMedicalCompanyMax != null">
+                serious_medical_company_max=#{seriousMedicalCompanyMax},
+            </if>
+            <if test="seriousMedicalEmployeeFixed != null">
+                serious_medical_employee_fixed=#{seriousMedicalEmployeeFixed},
+            </if>
+            <if test="seriousMedicalCompanyFixed != null">
+                serious_medical_company_fixed=#{seriousMedicalCompanyFixed},
+            </if>
+            <if test="seriousMedicalEmployeePercentMin != null">
+                serious_medical_employee_percent_min=#{seriousMedicalEmployeePercentMin},
+            </if>
+            <if test="seriousMedicalEmployeePercentMax != null">
+                serious_medical_employee_percent_max=#{seriousMedicalEmployeePercentMax},
+            </if>
+            <if test="seriousMedicalCompanyPercentMin != null">
+                serious_medical_company_percent_min=#{seriousMedicalCompanyPercentMin},
+            </if>
+            <if test="seriousMedicalCompanyPercentMax != null">
+                serious_medical_company_percent_max=#{seriousMedicalCompanyPercentMax},
+            </if>
+            <if test="unemployedEmployeePercent != null">
+                unemployed_employee_percent=#{unemployedEmployeePercent},
+            </if>
+            <if test="unemployedCompanyPercent != null">
+                unemployed_company_percent=#{unemployedCompanyPercent},
+            </if>
+            <if test="unemployedEmployeeMin != null">
+                unemployed_employee_min=#{unemployedEmployeeMin},
+            </if>
+            <if test="unemployedEmployeeMax != null">
+                unemployed_employee_max=#{unemployedEmployeeMax},
+            </if>
+            <if test="unemployedCompanyMin != null">
+                unemployed_company_min=#{unemployedCompanyMin},
+            </if>
+            <if test="unemployedCompanyMax != null">
+                unemployed_company_max=#{unemployedCompanyMax},
+            </if>
+            <if test="unemployedEmployeeFixed != null">
+                unemployed_employee_fixed=#{unemployedEmployeeFixed},
+            </if>
+            <if test="unemployedCompanyFixed != null">
+                unemployed_company_fixed=#{unemployedCompanyFixed},
+            </if>
+            <if test="unemployedEmployeePercentMin != null">
+                unemployed_employee_percent_min=#{unemployedEmployeePercentMin},
+            </if>
+            <if test="unemployedEmployeePercentMax != null">
+                unemployed_employee_percent_max=#{unemployedEmployeePercentMax},
+            </if>
+            <if test="unemployedCompanyPercentMin != null">
+                unemployed_company_percent_min=#{unemployedCompanyPercentMin},
+            </if>
+            <if test="unemployedCompanyPercentMax != null">
+                unemployed_company_percent_max=#{unemployedCompanyPercentMax},
+            </if>
+            <if test="maternityEmployeePercent != null">
+                maternity_employee_percent=#{maternityEmployeePercent},
+            </if>
+            <if test="maternityCompanyPercent != null">
+                maternity_company_percent=#{maternityCompanyPercent},
+            </if>
+            <if test="maternityEmployeeMin != null">
+                maternity_employee_min=#{maternityEmployeeMin},
+            </if>
+            <if test="maternityEmployeeMax != null">
+                maternity_employee_max=#{maternityEmployeeMax},
+            </if>
+            <if test="maternityCompanyMin != null">
+                maternity_company_min=#{maternityCompanyMin},
+            </if>
+            <if test="maternityCompanyMax != null">
+                maternity_company_max=#{maternityCompanyMax},
+            </if>
+            <if test="maternityEmployeeFixed != null">
+                maternity_employee_fixed=#{maternityEmployeeFixed},
+            </if>
+            <if test="maternityCompanyFixed != null">
+                maternity_company_fixed=#{maternityCompanyFixed},
+            </if>
+            <if test="maternityEmployeePercentMin != null">
+                maternity_employee_percent_min=#{maternityEmployeePercentMin},
+            </if>
+            <if test="maternityEmployeePercentMax != null">
+                maternity_employee_percent_max=#{maternityEmployeePercentMax},
+            </if>
+            <if test="maternityCompanyPercentMin != null">
+                maternity_company_percent_min=#{maternityCompanyPercentMin},
+            </if>
+            <if test="maternityCompanyPercentMax != null">
+                maternity_company_percent_max=#{maternityCompanyPercentMax},
+            </if>
+            <if test="injuryEmployeePercent != null">
+                injury_employee_percent=#{injuryEmployeePercent},
+            </if>
+            <if test="injuryCompanyPercent != null">
+                injury_company_percent=#{injuryCompanyPercent},
+            </if>
+            <if test="injuryEmployeeMin != null">
+                injury_employee_min=#{injuryEmployeeMin},
+            </if>
+            <if test="injuryEmployeeMax != null">
+                injury_employee_max=#{injuryEmployeeMax},
+            </if>
+            <if test="injuryCompanyMin != null">
+                injury_company_min=#{injuryCompanyMin},
+            </if>
+            <if test="injuryCompanyMax != null">
+                injury_company_max=#{injuryCompanyMax},
+            </if>
+            <if test="injuryEmployeeFixed != null">
+                injury_employee_fixed=#{injuryEmployeeFixed},
+            </if>
+            <if test="injuryCompanyFixed != null">
+                injury_company_fixed=#{injuryCompanyFixed},
+            </if>
+            <if test="injuryEmployeePercentMin != null">
+                injury_employee_percent_min=#{injuryEmployeePercentMin},
+            </if>
+            <if test="injuryEmployeePercentMax != null">
+                injury_employee_percent_max=#{injuryEmployeePercentMax},
+            </if>
+            <if test="injuryCompanyPercentMin != null">
+                injury_company_percent_min=#{injuryCompanyPercentMin},
+            </if>
+            <if test="injuryCompanyPercentMax != null">
+                injury_company_percent_max=#{injuryCompanyPercentMax},
+            </if>
+            <if test="houseFundEmployeePercent != null">
+                house_fund_employee_percent=#{houseFundEmployeePercent},
+            </if>
+            <if test="houseFundCompanyPercent != null">
+                house_fund_company_percent=#{houseFundCompanyPercent},
+            </if>
+            <if test="houseFundEmployeeMin != null">
+                house_fund_employee_min=#{houseFundEmployeeMin},
+            </if>
+            <if test="houseFundEmployeeMax != null">
+                house_fund_employee_max=#{houseFundEmployeeMax},
+            </if>
+            <if test="houseFundCompanyMin != null">
+                house_fund_company_min=#{houseFundCompanyMin},
+            </if>
+            <if test="houseFundCompanyMax != null">
+                house_fund_company_max=#{houseFundCompanyMax},
+            </if>
+            <if test="houseFundEmployeeFixed != null">
+                house_fund_employee_fixed=#{houseFundEmployeeFixed},
+            </if>
+            <if test="houseFundCompanyFixed != null">
+                house_fund_company_fixed=#{houseFundCompanyFixed},
+            </if>
+            <if test="houseFundEmployeePercentMin != null">
+                house_fund_employee_percent_min=#{houseFundEmployeePercentMin},
+            </if>
+            <if test="houseFundEmployeePercentMax != null">
+                house_fund_employee_percent_max=#{houseFundEmployeePercentMax},
+            </if>
+            <if test="houseFundCompanyPercentMin != null">
+                house_fund_company_percent_min=#{houseFundCompanyPercentMin},
+            </if>
+            <if test="houseFundCompanyPercentMax != null">
+                house_fund_company_percent_max=#{houseFundCompanyPercentMax},
+            </if>
+            <if test="needSeriousMedical != null">
+                need_serious_medical=#{needSeriousMedical},
+            </if>
+            <if test="insuranceRoundMethod != null">
+                insurance_round_method=#{insuranceRoundMethod},
+            </if>
+            <if test="houseFundRoundMethod != null">
+                house_fund_round_method=#{houseFundRoundMethod},
+            </if>
+
+
+                modtime= unix_timestamp()
+
+    </sql>
+    <update id="updateAreaInsuranceSetting">
+        <include refid="updatesql"/>
+        WHERE area_id=#{areaId}
+        <if test="residenceType != null and residenceType !=0">
+            AND residence_type=#{residenceType}
+        </if>
+    </update>
+    <update id="updateAreaInsuranceSettingMultiArea">
+        <include refid="updatesql"/>
+        WHERE area_id in
+        <foreach collection="areaIds" item="aearId" open="(" separator="," close=")">
+            #{aearId}
+        </foreach>
+        <if test="residenceType != null and residenceType !=0">
+            AND residence_type=#{residenceType}
+        </if>
+    </update>
+
+    <select id="getAreaInsuranceSettingByPrimaryKey" resultType="com.qjyd.xrxs.domain.AreaInsuranceSettingDO">
+        SELECT * FROM area_insurance_setting
+        WHERE id=#{id}
+    </select>
+
+    <select id="selectAreaInsuranceSetting" resultType="com.qjyd.xrxs.domain.AreaInsuranceSettingDO">
+        SELECT  * FROM area_insurance_setting
+
+        WHERE
+        area_id=#{areaId}
+        <if test="residenceType != null and residenceType !=0">
+          AND residence_type=#{residenceType}
+        </if>
+
+    </select>
+</mapper>

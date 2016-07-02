@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IMailActivityDAO">
+
+    <resultMap id="mailActivityResult" type="com.qjyd.xrxs.domain.MailActivityDO">
+        <id column="id" property="id"/>
+        <result column="activityName" property="activityName"/>
+        <result column="accepterNum" property="accepterNum"/>
+        <result column="beginTime" property="beginTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="successNum" property="successNum"/>
+        <result column=" unsubscribeNum" property="unsubscribeNum"/>
+    </resultMap>
+
+    <select id="selectByCondition" resultMap="mailActivityResult">
+        SELECT t1.id,t1.activity_name activityName,t1.sender,t1.title,t1.content,t1.accepter_num accepterNum,
+        t1.begin_time beginTime,t1.end_time endTime,t1.success_num successNum,t1.addtime,t1.modtime,
+         (select count(*) FROM management.mail_unsubscribe t2 where t2.activity_id=t1.id) unsubscribeNum
+        FROM  management.mail_activity t1
+        ORDER BY ${sortColumn} ${sortSeq}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+    
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO management.mail_activity (activity_name, sender, title,content,accepter_num,begin_time,end_time,success_num,addtime, modtime)
+      VALUES(#{activityName}, #{sender}, #{title},#{content},#{accepterNum},#{beginTime},#{endTime},#{successNum},unix_timestamp(), unix_timestamp())
+    </insert>
+</mapper>

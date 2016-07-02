@@ -21,31 +21,20 @@ public class DeleteNoShops {
     public static void main(String[] args) throws Exception {
         String fileContent = "";
         String resultString = "";
-        try {
-            File file = new File("E:\\爬虫数据\\20160612\\dp_xiabu_data");
-            File[] files = file.listFiles();
-            int lens = files.length;
-            for (int i = 0; i < lens; i++) {
-                File[] htmlFile = files[i].listFiles();
-                my:
-                for (File htmlF : htmlFile) {
-                    fileContent = FileUtils.readFileToString(htmlF, "UTF-8");
-                    resultString = parseHtmlInfo(fileContent);
-                    if (!StringUtils.isEmpty(resultString)) {
-                        if (resultString.startsWith("呷哺呷哺")) {
-                            continue my;
-                        } else {
-                            htmlF.delete();
-                            LOGGER.warn("已经删除了" + htmlF.getName());
-                        }
-                    } else {
-                        htmlF.delete();
-                        LOGGER.warn("已经删除了" + htmlF.getName());
-                    }
+        File file = new File("E:\\爬虫数据\\20160612\\dp_kfc_data");
+        File[] files = file.listFiles();
+        int lens = files.length;
+        for (int i = 0; i < lens; i++) {
+            File[] htmlFile = files[i].listFiles();
+            my:
+            for (File htmlF : htmlFile) {
+                fileContent = FileUtils.readFileToString(htmlF, "UTF-8");
+                resultString = parseHtmlInfo(fileContent);
+                if (!StringUtils.isEmpty(resultString) && resultString.contains("肯德基门")) {
+                    htmlF.delete();
+                    LOGGER.warn("已经删除了" + htmlF.getName());
                 }
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage(), e);
         }
     }
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IAreaDAO">
+
+    <sql id="condition">
+
+        <if test='name != null and name != ""'>
+            and name=#{name}
+        </if>
+        <if test='areaType != null and areaType != ""'>
+            and area_type=#{areaType}
+        </if> <if test='parentId != null'>
+        and parent_id=#{parentId}
+    </if>
+        <if test='isPrimary != null and isPrimary != ""'>
+        and is_primary=#{isPrimary}
+    </if>
+    </sql>
+    <select id="selectByParam" resultType="com.qjyd.xrxs.domain.AreaDO">
+        select *
+         from management.area
+        where 1 = 1
+        <include refid="condition"/>
+
+    </select>
+
+
+</mapper>

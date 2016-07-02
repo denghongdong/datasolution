@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IFeedbackDAO">
+    <resultMap id="FeedbackResult" type="com.qjyd.xrxs.domain.FeedbackDO">
+        <id column="id" property="id"/>
+        <result column="companyId" property="companyId"/>
+        <result column="companyName" property="companyName"/>
+        <result column="accountId" property="accountId"/>
+        <result column="accountName" property="accountName"/>
+        <result column="accountEmail" property="accountEmail"/>
+        <result column="accountMobile" property="accountMobile"/>
+        <result column="accountStatus" property="accountStatus"/>
+        <result column="attachment" property="attachment"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+        <result column="addtime" property="addtime"/>
+        <result column="modtime" property="modtime"/>
+        <collection property="remarks" ofType="com.qjyd.xrxs.domain.FeedbackRemarkDO">
+            <id column="remarkId" property="id"/>
+            <result column="remarkFeedbackId" property="feedbackId"/>
+            <result column="remarkBackendAccountId" property="backendAccountId"/>
+            <result column="remarkBackendAccountName" property="backendAccountName"/>
+            <result column="remarkContent" property="remark"/>
+            <result column="remarkAddtime" property="addtime"/>
+            <result column="remarkModtime" property="modtime"/>
+        </collection>
+    </resultMap>
+
+    <sql id="condition">
+        <if test='startTime != null and startTime != ""'>
+            AND f.addtime &gt; #{startTimeInSeconds}
+        </if>
+        <if test='endTime != null and endTime != ""'>
+            AND f.addtime &lt; #{endTimeInSeconds}
+        </if>
+        <if test='accountType != null and accountType != ""'>
+            AND a.status = #{accountType}
+        </if>
+        <if test='accountMobile != null and accountMobile != ""'>
+            AND a.mobile = #{accountMobile}
+        </if>
+        <if test='accountEmail != null and accountEmail != ""'>
+            AND a.email = #{accountEmail}
+        </if>
+        <if test='status != null and status != ""'>
+            AND f.status = #{status}
+        </if>
+        <if test='isAttachment == "1"'>
+            AND (f.attachment != '' AND f.attachment != '[]')
+        </if>
+        <if test='isAttachment == "0"'>
+            AND (f.attachment = '' OR f.attachment = '[]')
+        </if>
+    </sql>
+
+    <sql id="columns">
+        f.id, f.company_id companyId, f.company_name companyName, f.account_id accountId, f.attachment attachment, a.name accountName,
+        a.email accountEmail, a.mobile accountMobile, a.status accountStatus, f.content, f.status, f.addtime, f.modtime
+    </sql>
+
+    <select id="selectByCondition" resultMap="FeedbackResult">
+        SELECT <include refid="columns"/>
+        FROM management.feedback f LEFT JOIN business.account a ON f.account_id = a.id
+        WHERE 1 = 1
+        <include refid="condition"/>
+        ORDER BY ${sortColumn} ${sortSeq}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="selectCountByCondition" resultType="java.lang.Integer">
+        SELECT count(f.id)
+        FROM management.feedback f LEFT JOIN business.account a ON f.account_id = a.id
+        WHERE 1 = 1
+        <include refid="condition"/>
+    </select>
+
+    <select id="selectById" resultMap="FeedbackResult">
+        SELECT <include refid="columns"/>
+        ,r.id remarkId, r.feedback_id remarkFeedbackId, r.account_id remarkBackendAccountId, r.remark remarkContent,
+        r.addtime remarkAddtime, r.modtime remarkModtime, ba.name remarkBackendAccountName
+        FROM management.feedback f LEFT JOIN business.account a ON f.account_id = a.id
+        LEFT JOIN management.feedback_remark r ON f.id = r.feedback_id
+        LEFT JOIN management.account ba ON r.account_id = ba.id
+        WHERE f.id = #{id}
+        ORDER BY r.id
+    </select>
+</mapper>

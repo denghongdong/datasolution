@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IMailUnsubscribeDAO">
+
+    <resultMap id="mailUnsubscribeResult" type="com.qjyd.xrxs.domain.MailUnsubscribeDO">
+        <id column="id" property="id"/>
+        <result column="activityName" property="activityName"/>
+    </resultMap>
+
+    <select id="selectByCondition" resultMap="mailUnsubscribeResult">
+        SELECT t1.id id,t2.title title,t1.mailbox mailbox,t1.addtime FROM  management.mail_unsubscribe t1
+              LEFT JOIN management.mail_activity t2 on t2.id=t1.activity_id
+         WHERE 1=1
+        <if test='startTime != null and startTime != ""'>
+            AND t1.addtime &gt; #{startTimeInSeconds}
+        </if>
+        <if test='endTime != null and endTime != ""'>
+            AND t1.addtime &lt; #{endTimeInSeconds}
+        </if>
+        ORDER BY ${sortColumn} ${sortSeq}
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO management.mail_unsubscribe (activity_id,mailbox,addtime, modtime)
+      VALUES(#{activityId}, #{mailbox},unix_timestamp(), unix_timestamp())
+    </insert>
+</mapper>

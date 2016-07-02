@@ -23,7 +23,7 @@ public interface DpDAO {
     @Insert("INSERT INTO jdjr_data.dp_food_shops (city_enName,cityId,city_name,brand_name,shopId," +
             "shop_name,shop_address,comments_num,taste,surroundings,service,per_consumption," +
             "shop_url,file_path,operate_time,opening_date)" +
-            "VALUES(#{city_enName}, #{cityId}, #{city_name}, #{brand_name}, #{shopId}, #{shopId}," +
+            "VALUES(#{city_enName}, #{cityId}, #{city_name}, #{brand_name}, #{shopId}," +
             " #{shop_name}, #{shop_address},#{comments_num},#{taste},#{surroundings},#{service}," +
             "#{per_consumption},#{shop_url},#{file_path},#{operate_time},#{opening_date}")
     public int saveData(DPShopDO dpShopDO);

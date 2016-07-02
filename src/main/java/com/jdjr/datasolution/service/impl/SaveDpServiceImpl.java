@@ -17,6 +17,7 @@ public class SaveDpServiceImpl implements ISaveDpService {
     @Resource
     DpDAO dpDAO;
 
+    @Override
     public int getRecord() {
         return dpDAO.getRecord();
     }

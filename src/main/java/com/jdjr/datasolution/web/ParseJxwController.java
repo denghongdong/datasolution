@@ -2,7 +2,6 @@ package com.jdjr.datasolution.web;
 
 import com.jdjr.datasolution.domain.JXWGoodsDO;
 import com.jdjr.datasolution.service.ISaveJxwService;
-import com.jdjr.datasolution.service.impl.SaveJxwServiceImpl;
 import com.jdjr.datasolution.util.DateUtil;
 import com.jdjr.datasolution.util.ParseJxwUtil;
 import com.jdjr.datasolution.util.SettingsUtil;

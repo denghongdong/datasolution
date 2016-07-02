@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qjyd.xrxs.dao.IOperationLogDAO">
+
+    <sql id="condition">
+        <if test='startTime != null and startTime != ""'>
+            AND log_time <![CDATA[ >= ]]> #{startTime}
+        </if>
+        <if test='endTime != null and endTime != ""'>
+            AND log_time <![CDATA[ < ]]> #{endTime}
+        </if>
+        <if test='message != null and message != ""'>
+            AND message LIKE '%${message}%'
+        </if>
+        <if test='email != null and email != ""'>
+            AND email = #{email}
+        </if>
+        <if test='catName != null and catName != ""'>
+            AND category = #{catName}
+        </if>
+        <if test='prefix != null and prefix != ""'>
+            AND prefix = #{prefix}
+        </if>
+
+    </sql>
+
+    <select id="selectBackendOperationLogByCondition" resultType="com.qjyd.xrxs.domain.OperationLogDO">
+        SELECT  t1.*,t2.email FROM management.operation_log
+        t1 LEFT OUTER JOIN management.account t2 ON t1.operator_id = t2.id
+        WHERE 1 = 1
+        <include refid="condition"/>
+        ORDER BY ${sortColumn} ${sortSeq}
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="selectBackendOperationLogCountByCondition" resultType="java.lang.Integer">
+        SELECT  count(*) FROM management.operation_log
+        t1 LEFT OUTER JOIN management.account t2 ON t1.operator_id = t2.id
+        WHERE 1 = 1
+        <include refid="condition"/>
+
+    </select>
+</mapper>
